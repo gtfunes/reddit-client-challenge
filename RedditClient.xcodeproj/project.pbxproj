@@ -20,6 +20,9 @@
 		7C6E865A24638E5C00BDC032 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6E865424638E5C00BDC032 /* URL.swift */; };
 		7C6E865C2463A2B900BDC032 /* FeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6E865B2463A2B900BDC032 /* FeedTableViewController.swift */; };
 		7C6E86622463BD5100BDC032 /* RoundedCornerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6E86612463BD5100BDC032 /* RoundedCornerView.swift */; };
+		7C6E86642463D5E300BDC032 /* GlobalSpliViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6E86632463D5E300BDC032 /* GlobalSpliViewController.swift */; };
+		7C6E86662463D65E00BDC032 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6E86652463D65E00BDC032 /* PostDetailViewController.swift */; };
+		7C6E86682463D85800BDC032 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6E86672463D85800BDC032 /* PostCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +41,9 @@
 		7C6E865424638E5C00BDC032 /* URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
 		7C6E865B2463A2B900BDC032 /* FeedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewController.swift; sourceTree = "<group>"; };
 		7C6E86612463BD5100BDC032 /* RoundedCornerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornerView.swift; sourceTree = "<group>"; };
+		7C6E86632463D5E300BDC032 /* GlobalSpliViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSpliViewController.swift; sourceTree = "<group>"; };
+		7C6E86652463D65E00BDC032 /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
+		7C6E86672463D85800BDC032 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,9 +108,12 @@
 		7C6E863C2463755F00BDC032 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7C6E86692463D85C00BDC032 /* Cells */,
 				7C6E86292463736000BDC032 /* Main.storyboard */,
 				7C6E86612463BD5100BDC032 /* RoundedCornerView.swift */,
+				7C6E86632463D5E300BDC032 /* GlobalSpliViewController.swift */,
 				7C6E865B2463A2B900BDC032 /* FeedTableViewController.swift */,
+				7C6E86652463D65E00BDC032 /* PostDetailViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -134,6 +143,14 @@
 				7C6E865224638E5C00BDC032 /* ApiManager.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		7C6E86692463D85C00BDC032 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				7C6E86672463D85800BDC032 /* PostCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,6 +224,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C6E86642463D5E300BDC032 /* GlobalSpliViewController.swift in Sources */,
+				7C6E86662463D65E00BDC032 /* PostDetailViewController.swift in Sources */,
+				7C6E86682463D85800BDC032 /* PostCell.swift in Sources */,
 				7C6E865924638E5C00BDC032 /* ServiceError.swift in Sources */,
 				7C6E865A24638E5C00BDC032 /* URL.swift in Sources */,
 				7C6E865524638E5C00BDC032 /* PostsManager.swift in Sources */,
