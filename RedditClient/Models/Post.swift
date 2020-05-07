@@ -26,18 +26,18 @@ extension Post: Codable {
             return nil
         }
         
+        // Parse usual Reddit posts values
         self.id = id
         self.title = json["title"] as? String
         self.author = json["author"] as? String
         self.thumbnail = json["thumbnail"] as? String
         self.numComments = json["num_comments"] as? Int
+        self.ups = json["ups"] as? Int
         
         // We first get the creation timestamp from the JSON object
         let creationTimestamp = json["created"] as? Double
         // We then calculate the posts creation date from
         // the timestamp using the Date class
         self.created = Date(timeIntervalSince1970: creationTimestamp ?? 0)
-        
-        self.ups = json["ups"] as? Int
     }
 }
