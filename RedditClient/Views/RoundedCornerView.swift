@@ -6,6 +6,7 @@
 //  Copyright © 2020 Gaston Funes. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 @IBDesignable

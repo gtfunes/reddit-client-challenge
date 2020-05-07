@@ -10,12 +10,14 @@ import Foundation
 
 struct Post {
     var id: String
+    var subreddit: String?
     var title: String?
     var author: String?
     var thumbnail: String?
     var numComments: Int?
     var created: Date?
     var ups: Int?
+    var read: Bool
 }
 
 extension Post: Codable {
@@ -28,11 +30,13 @@ extension Post: Codable {
         
         // Parse usual Reddit posts values
         self.id = id
+        self.subreddit = json["subreddit"] as? String
         self.title = json["title"] as? String
         self.author = json["author"] as? String
         self.thumbnail = json["thumbnail"] as? String
         self.numComments = json["num_comments"] as? Int
         self.ups = json["ups"] as? Int
+        self.read = false
         
         // We first get the creation timestamp from the JSON object
         let creationTimestamp = json["created"] as? Double
