@@ -44,9 +44,13 @@ class FeedTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 160
+    }
+    
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        // If out tableView does not have
-        // a footer view, then it won't repeat
+        // If our tableView does not have
+        // a footer view, then it will repeat
         // separators after the last cell
         let footerView = UIView.init()
         footerView.backgroundColor = UIColor.clear
