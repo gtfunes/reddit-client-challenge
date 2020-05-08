@@ -23,6 +23,9 @@
 		7C6E86642463D5E300BDC032 /* GlobalSpliViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6E86632463D5E300BDC032 /* GlobalSpliViewController.swift */; };
 		7C6E86662463D65E00BDC032 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6E86652463D65E00BDC032 /* PostDetailViewController.swift */; };
 		7C6E86682463D85800BDC032 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6E86672463D85800BDC032 /* PostCell.swift */; };
+		7C94B42D2464B1E300C1CA01 /* DateString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94B42C2464B1E300C1CA01 /* DateString.swift */; };
+		7C94B42F2464B2A100C1CA01 /* ImageDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94B42E2464B2A100C1CA01 /* ImageDownload.swift */; };
+		7C94B4312464C43C00C1CA01 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C94B4302464C43C00C1CA01 /* StorageManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +47,9 @@
 		7C6E86632463D5E300BDC032 /* GlobalSpliViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSpliViewController.swift; sourceTree = "<group>"; };
 		7C6E86652463D65E00BDC032 /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
 		7C6E86672463D85800BDC032 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		7C94B42C2464B1E300C1CA01 /* DateString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateString.swift; sourceTree = "<group>"; };
+		7C94B42E2464B2A100C1CA01 /* ImageDownload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownload.swift; sourceTree = "<group>"; };
+		7C94B4302464C43C00C1CA01 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +82,7 @@
 		7C6E86222463736000BDC032 /* RedditClient */ = {
 			isa = PBXGroup;
 			children = (
+				7C94B42B2464B1CE00C1CA01 /* Helpers */,
 				7C6E864E24638E5C00BDC032 /* Models */,
 				7C6E865024638E5C00BDC032 /* Networking */,
 				7C6E864C24638E5C00BDC032 /* Managers */,
@@ -109,11 +116,8 @@
 			isa = PBXGroup;
 			children = (
 				7C6E86692463D85C00BDC032 /* Cells */,
-				7C6E86292463736000BDC032 /* Main.storyboard */,
-				7C6E86612463BD5100BDC032 /* RoundedCornerView.swift */,
-				7C6E86632463D5E300BDC032 /* GlobalSpliViewController.swift */,
-				7C6E865B2463A2B900BDC032 /* FeedTableViewController.swift */,
-				7C6E86652463D65E00BDC032 /* PostDetailViewController.swift */,
+				7C94B42A2464B1B900C1CA01 /* Main */,
+				7C94B4292464B1B000C1CA01 /* Utilities */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -121,6 +125,7 @@
 		7C6E864C24638E5C00BDC032 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				7C94B4302464C43C00C1CA01 /* StorageManager.swift */,
 				7C6E864D24638E5C00BDC032 /* PostsManager.swift */,
 			);
 			path = Managers;
@@ -151,6 +156,34 @@
 				7C6E86672463D85800BDC032 /* PostCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		7C94B4292464B1B000C1CA01 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				7C6E86612463BD5100BDC032 /* RoundedCornerView.swift */,
+				7C6E86632463D5E300BDC032 /* GlobalSpliViewController.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		7C94B42A2464B1B900C1CA01 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				7C6E86292463736000BDC032 /* Main.storyboard */,
+				7C6E865B2463A2B900BDC032 /* FeedTableViewController.swift */,
+				7C6E86652463D65E00BDC032 /* PostDetailViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		7C94B42B2464B1CE00C1CA01 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				7C94B42C2464B1E300C1CA01 /* DateString.swift */,
+				7C94B42E2464B2A100C1CA01 /* ImageDownload.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -224,6 +257,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C94B42F2464B2A100C1CA01 /* ImageDownload.swift in Sources */,
 				7C6E86642463D5E300BDC032 /* GlobalSpliViewController.swift in Sources */,
 				7C6E86662463D65E00BDC032 /* PostDetailViewController.swift in Sources */,
 				7C6E86682463D85800BDC032 /* PostCell.swift in Sources */,
@@ -233,10 +267,12 @@
 				7C6E86242463736000BDC032 /* AppDelegate.swift in Sources */,
 				7C6E865C2463A2B900BDC032 /* FeedTableViewController.swift in Sources */,
 				7C6E86622463BD5100BDC032 /* RoundedCornerView.swift in Sources */,
+				7C94B42D2464B1E300C1CA01 /* DateString.swift in Sources */,
 				7C6E865824638E5C00BDC032 /* ApiManager.swift in Sources */,
 				7C6E865724638E5C00BDC032 /* URLRequest.swift in Sources */,
 				7C6E86262463736000BDC032 /* SceneDelegate.swift in Sources */,
 				7C6E865624638E5C00BDC032 /* Post.swift in Sources */,
+				7C94B4312464C43C00C1CA01 /* StorageManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

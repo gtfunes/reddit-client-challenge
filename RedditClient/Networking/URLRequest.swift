@@ -19,9 +19,9 @@ extension URLRequest {
         setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         switch method {
-        case .post, .put:
-            httpBody = try! JSONSerialization.data(withJSONObject: params, options: [])
-        default:
+            case .post, .put:
+                httpBody = try! JSONSerialization.data(withJSONObject: params, options: [])
+            default:
             break
         }
     }
