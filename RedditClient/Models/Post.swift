@@ -30,7 +30,7 @@ extension Post: Codable {
         
         // Parse usual Reddit posts values
         self.id = id
-        self.subreddit = json["subreddit"] as? String
+        self.subreddit = json["subreddit_name_prefixed"] as? String
         self.title = json["title"] as? String
         self.author = json["author"] as? String
         self.thumbnail = json["thumbnail"] as? String
@@ -39,9 +39,16 @@ extension Post: Codable {
         self.read = false
         
         // We first get the creation timestamp from the JSON object
-        let creationTimestamp = json["created"] as? Double
+        let creationTimestamp = json["created_utc"] as? Double
         // We then calculate the posts creation date from
         // the timestamp using the Date class
         self.created = Date(timeIntervalSince1970: creationTimestamp ?? 0)
+    }
+    
+    func setRead(read: Bool) -> Post {
+        var updatedPost = self
+        updatedPost.read = read
+        
+        return updatedPost
     }
 }
