@@ -14,25 +14,23 @@ class PostsManager {
     var storedPosts: [Post]? = []
     
     @discardableResult
-    func loadTopPosts(fromSubreddit: String, afterItem: String?, preferCache: Bool, completion: @escaping ([Post]?, ServiceError?) -> ()) -> URLSessionDataTask? {
+    func loadTopPosts(fromSubreddit: String, afterItem: String?, limit: Int?, preferCache: Bool, completion: @escaping ([Post]?, ServiceError?) -> ()) -> URLSessionDataTask? {
         // If we want data from the cache
         // and there is already a saved file
-        if preferCache && StorageManager.fileExists(self.storageFileName, in: .documents) {
-            let postsFromDisk = self.loadPostsFromDisk()
+        if preferCache && StorageManager.fileExists(storageFileName, in: .documents) {
+            let postsFromDisk = loadPostsFromDisk()
             
-            self.storedPosts = postsFromDisk
+            storedPosts = postsFromDisk
             
             completion(postsFromDisk, nil)
             
             return nil
         }
     
-        // We set the parameter raw_json
-        // so the Reddit API doesn't
-        // HTML escape any characters
-        // Count: ammount of posts we want
-        // After: last item id we have
-        var params: JSON = ["raw_json": 1, "limit": 10]
+        // raw_json: no HTML escape on characters
+        // count: amount of posts we want
+        // after: last item id we have
+        var params: JSON = ["raw_json": 1, "limit": limit ?? 15]
         
         if let afterId = afterItem {
             params["after"] = afterId
@@ -46,32 +44,40 @@ class PostsManager {
             let postsData = responseData?["children"] as? nestedJSON
             let postsResponse = postsData?.compactMap{ item in Post(json: item["data"] as! JSON)}
             
-            self.storedPosts!.append(contentsOf: postsResponse!)
-            
             completion(postsResponse, error)
+            
+            self.storedPosts?.append(contentsOf: postsResponse!)
+            
+            DispatchQueue.main.async { [weak self] in
+                self?.savePostsToDisk()
+            }
         }
     }
     
     private func savePostsToDisk() {
-        StorageManager.store(self.storedPosts, to: .documents, as: self.storageFileName)
+        StorageManager.store(storedPosts, to: .documents, as: storageFileName)
     }
     private func loadPostsFromDisk() -> [Post] {
         return StorageManager.retrieve(storageFileName, from: .documents, as: [Post].self)
     }
     
-    func getPostById(id: String) -> Post? {
-        return self.storedPosts!.filter({ $0.id == id }).first
+    private func getIndexOfPost(post: Post) -> Int? {
+        return storedPosts!.firstIndex(where: { $0.id == post.id })
     }
-    
     func setReadForPost(post: Post) -> Post? {
-        if let index = self.storedPosts!.firstIndex(where: { $0.id == post.id }) {
+        if let index = getIndexOfPost(post: post) {
             let updatedPost = post.setRead(read: true)
-            self.storedPosts![index] = updatedPost
-            self.savePostsToDisk()
+            storedPosts![index] = updatedPost
+            savePostsToDisk()
             
             return updatedPost
         }
         
         return nil
+    }
+    func removePost(post: Post) {
+        if let index = getIndexOfPost(post: post) {
+            storedPosts!.remove(at: index)
+        }
     }
 }
