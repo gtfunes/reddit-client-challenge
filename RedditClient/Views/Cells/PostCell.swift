@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 
+protocol PostCellDelegate: class {
+  func shouldDismissPost(_ postToDismiss: Post)
+}
+
 final class PostCell: UITableViewCell {
     @IBOutlet weak var unreadView: UIView!
     @IBOutlet weak var authorLabel: UILabel!
@@ -17,10 +21,16 @@ final class PostCell: UITableViewCell {
     @IBOutlet weak var dismissButton: UIButton!
     @IBOutlet weak var commentsLabel: UILabel!
     
+    weak var delegate: PostCellDelegate?
+    
     var postItem: Post? {
       didSet {
         refreshUI()
       }
+    }
+    
+    @objc private func onDismissTapped() {
+        self.delegate?.shouldDismissPost(self.postItem!)
     }
     
     private func refreshUI() {
@@ -33,6 +43,9 @@ final class PostCell: UITableViewCell {
             
             articleImage.loadFromURL(imageUrl: postItem.thumbnail!)
             titleLabel.text = postItem.title
+            
+            dismissButton.addTarget(self, action: #selector(self.onDismissTapped), for: .touchUpInside)
+            
             commentsLabel.text = postItem.numComments!.description + " comments"
         }
     }
