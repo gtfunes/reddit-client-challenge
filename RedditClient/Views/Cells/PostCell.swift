@@ -41,7 +41,26 @@ final class PostCell: UITableViewCell {
             let postAuthor = "u/" + postItem.author!
             authorLabel.text = postAuthor + " " + postCreatedAt
             
-            articleImage.loadFromURL(imageUrl: postItem.thumbnail!)
+            if let postImage = postItem.thumbnail as String? {
+                if postImage.count > 0 {
+                    articleImage.isHidden = false
+                    articleImage.loadFromURL(imageUrl: postImage, completion: { data in
+                        DispatchQueue.main.async { [weak self] in
+                            // We check if the url that we fetched
+                            // is the same as the one in the cell
+                            // because they get reused
+                            if postImage as AnyObject === self?.postItem?.thumbnail as AnyObject? {
+                                self?.articleImage.image = UIImage(data: data!)
+                            }
+                        }
+                    })
+                } else {
+                    articleImage.isHidden = true
+                }
+            } else {
+                articleImage.isHidden = true
+            }
+            
             titleLabel.text = postItem.title
             
             dismissButton.addTarget(self, action: #selector(self.onDismissTapped), for: .touchUpInside)
