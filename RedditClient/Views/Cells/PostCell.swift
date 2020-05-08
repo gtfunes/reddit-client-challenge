@@ -12,7 +12,6 @@ import UIKit
 final class PostCell: UITableViewCell {
     @IBOutlet weak var unreadView: UIView!
     @IBOutlet weak var authorLabel: UILabel!
-    @IBOutlet weak var dateAgoLabel: UILabel!
     @IBOutlet weak var articleImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dismissButton: UIButton!
@@ -27,12 +26,14 @@ final class PostCell: UITableViewCell {
     private func refreshUI() {
         if let postItem = postItem as Post? {
             unreadView.isHidden = postItem.read
-            authorLabel.text = "u/" + postItem.author!
-            //dateago
-            //image
+            
+            let postCreatedAt = "(" + (postItem.created?.timeAgoString())! + ")"
+            let postAuthor = "u/" + postItem.author!
+            authorLabel.text = postAuthor + " " + postCreatedAt
+            
+            articleImage.loadFromURL(imageUrl: postItem.thumbnail!)
             titleLabel.text = postItem.title
             commentsLabel.text = postItem.numComments!.description + " comments"
         }
     }
 }
-
