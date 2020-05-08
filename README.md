@@ -10,7 +10,7 @@ Things I couldn't finish in time:
 - 'Dismiss all' button in main TableView
 
 ## Screenshots
-###iPad
+### iPad
 ![iPad](iPad-Screenshot.png)
 ### iPhone
 ![iPhone](iPhone-Screenshot.png)
