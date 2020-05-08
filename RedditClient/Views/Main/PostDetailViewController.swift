@@ -25,17 +25,29 @@ class PostDetailViewController: UIViewController {
     
     private func refreshUI() {
         if let postItem = postItem as Post? {
-            //image
+            // In this example we use the default
+            // Reddit profile picture here as the user's
+            // info does not come in the json we use
+            //userImage.image = nil
+            userImage.loadFromURL(imageUrl: "https://www.redditstatic.com/avatars/avatar_default_19_0DD3BB.png")
+            
             authorLabel.text = "u/" + postItem.author!
-            //image
+            
+            articleImage.image = nil
+            
+            if let postImage = postItem.thumbnail as String? {
+                articleImage.isHidden = false
+                articleImage.loadFromURL(imageUrl: postImage)
+            } else {
+                articleImage.isHidden = true
+            }
+            
             titleLabel.text = postItem.title
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        title = "Post detail"
         
         self.refreshUI()
     }
@@ -52,4 +64,3 @@ extension PostDetailViewController: PostSelectionDelegate {
     postItem = newPost
   }
 }
-
