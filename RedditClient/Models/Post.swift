@@ -33,7 +33,16 @@ extension Post: Codable {
         self.subreddit = json["subreddit_name_prefixed"] as? String
         self.title = json["title"] as? String
         self.author = json["author"] as? String
-        self.thumbnail = json["thumbnail"] as? String
+        
+        // We check if the post has a thumbnail
+        if let imageThumb = json["thumbnail"] as? String {
+            // If it does we check for the 'nsfw' case
+            // were we just get this string and not a url
+            if imageThumb.caseInsensitiveCompare("nsfw") != ComparisonResult.orderedSame {
+                self.thumbnail = imageThumb
+            }
+        }
+        
         self.numComments = json["num_comments"] as? Int
         self.ups = json["ups"] as? Int
         self.read = false
